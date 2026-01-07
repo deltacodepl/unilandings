@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,6 +24,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['Manrope', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
                         uniblue: '#0F172A',
@@ -82,6 +83,93 @@
         .hover-lift:hover {
             transform: translateY(-5px);
         }
+
+        /* Unilustre Section Styles */
+        .product-highlight {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .product-viz {
+            position: relative;
+            height: 500px;
+            background: #f4f6f8;
+            dark:background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .foil-card {
+            width: 300px;
+            height: 400px;
+            background: red;
+            position: relative;
+            transform: rotate(-5deg);
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
+            overflow: hidden;
+        }
+        .foil-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.4) 100%);
+            z-index: 2;
+        }
+        .foil-text {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            color: white;
+            font-weight: 800;
+            font-size: 2rem;
+            z-index: 3;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .foil-card:hover { transform: rotate(0deg) scale(1.02); }
+
+        .section-header {
+            margin-bottom: 32px;
+            max-width: 700px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-header .subtitle {
+            color: #7ab800;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-highlight {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .product-viz {
+                height: 300px;
+            }
+            .foil-card {
+                width: 200px;
+                height: 300px;
+            }
+            .foil-text {
+                font-size: 1.5rem;
+                bottom: 20px;
+                left: 15px;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
@@ -118,34 +206,34 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <header class="relative pt-20 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
         <!-- Background Decor -->
         <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-slate-50 dark:bg-slate-900/50 clip-path-polygon"></div>
         
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
-                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                    Nowa jakość uszlachetniania
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-300 text-xs font-bold uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    Zrównoważony Rozwój
                 </div>
                 
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
-                    Nadajemy blask <br>
-                    <span class="text-holo">Twoim wizjom.</span>
+                <h1 class="text-5xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight">
+                    Blask Folii.<br>
+                    <span class="text-holo">Bez Plastiku.</span>
                 </h1>
                 
                 <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
-                    Lider w produkcji papierów i kartonów metalizowanych oraz laminatów. 
-                    Tworzymy opakowania, które przyciągają wzrok i budują prestiż marki.
+                    Poznaj <strong>Unilustre®</strong> – rewolucyjną technologię transferu metalicznego. 
+                    Wyjątkowy efekt wizualny, który jest w 100% przyjazny dla środowiska.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="#oferta" class="inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30">
-                        Zobacz Produkty
+                    <a href="#kontakt" class="inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30">
+                        Zamów Próbki
                         <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </a>
-                    <a href="#kontakt" class="inline-flex justify-center items-center px-8 py-4 border border-slate-300 dark:border-slate-700 font-bold rounded-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-                        Zamów Próbnik
+                    <a href="#unilustre" class="inline-flex justify-center items-center px-8 py-4 border border-slate-300 dark:border-slate-700 font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                        Poznaj Technologię
                     </a>
                 </div>
             </div>
@@ -188,6 +276,45 @@
                 <span class="text-2xl font-bold font-serif text-slate-800 dark:text-slate-200 flex items-center gap-2"><i data-lucide="gem" class="w-6 h-6"></i> LUXPRINT</span>
                 <span class="text-2xl font-bold font-mono text-slate-800 dark:text-slate-200 flex items-center gap-2"><i data-lucide="printer" class="w-6 h-6"></i> DRUK24</span>
                 <span class="text-2xl font-bold font-sans text-slate-800 dark:text-slate-200 flex items-center gap-2"><i data-lucide="layers" class="w-6 h-6"></i> MULTIFOIL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Product Feature: Unilustre -->
+    <section id="unilustre" class="py-24 bg-white dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="product-highlight">
+                <div class="product-viz">
+                    <!-- Geometric Background Elements -->
+                    <div style="position:absolute; width: 80%; height: 80%; border: 1px solid rgba(0,0,0,0.1); border-radius: 50%;"></div>
+                    <div style="position:absolute; width: 60%; height: 60%; border: 1px solid rgba(0,0,0,0.1); border-radius: 50%;"></div>
+                    
+                    <!-- Simulated Product (Red Metallic Box) -->
+                    <div class="foil-card">
+                        <span class="foil-text">Unilustre®</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="section-header">
+                        <span class="subtitle">Flagowy Produkt</span>
+                        <h2 class="text-slate-900 dark:text-white">Unilustre® <span style="font-weight:300; color:var(--text-secondary)">Technologia Transferu</span></h2>
+                    </div>
+                    <p style="margin-bottom: 20px; font-size:1.1rem;" class="text-slate-600 dark:text-slate-400">
+                        Unilustre® to proces, który przenosi metalizowaną warstwę na papier lub karton, a następnie usuwa folię nośną (PET). Rezultatem jest olśniewające opakowanie, które jest <strong>w pełni repulpowalne i recyklingowalne</strong>.
+                    </p>
+                    <ul style="list-style:none; margin-bottom: 30px;">
+                        <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;" class="text-slate-700 dark:text-slate-300">
+                            <span style="color:#7ab800">✔</span> Brak warstwy plastikowej na finalnym produkcie
+                        </li>
+                        <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;" class="text-slate-700 dark:text-slate-300">
+                            <span style="color:#7ab800">✔</span> Idealne pod nadruk UV i konwencjonalny
+                        </li>
+                        <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;" class="text-slate-700 dark:text-slate-300">
+                            <span style="color:#7ab800">✔</span> Dostępne efekty holograficzne i soczewkowe
+                        </li>
+                    </ul>
+                    <a href="#kontakt" style="color:#005596; font-weight:700; text-decoration:none; border-bottom:2px solid #005596;">Pobierz specyfikację techniczną →</a>
+                </div>
             </div>
         </div>
     </section>
