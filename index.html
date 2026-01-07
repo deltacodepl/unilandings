@@ -63,6 +63,25 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hover lift effect */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
@@ -269,6 +288,91 @@
         </div>
     </section>
 
+    <!-- Food Industry Products -->
+    <section id="food-safe" class="py-24 bg-slate-50 dark:bg-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="text-slate-500 dark:text-slate-400 font-bold uppercase text-sm">Produkcja w Polsce</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold mt-2 text-slate-900 dark:text-white">Rozwiązania dla Gastronomii</h2>
+                </div>
+                <p class="max-w-md text-slate-600 dark:text-slate-400 text-sm">
+                    Nasz polski zakład oferuje specjalistyczne produkty laminowane, spełniające rygorystyczne normy kontaktu z żywnością.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Product 1: Baking Board -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/></svg>
+                    </div>
+                    <div class="w-10 h-10 mb-4 bg-orange-100 dark:bg-orange-900/40 text-orange-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Baking Board</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Podkłady cukiernicze odporne na wodę i tłuszcze. Dedykowane do pieczenia w wysokich temperaturach.
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Oven Safe</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Wodoodporne</li>
+                    </ul>
+                </div>
+
+                <!-- Product 2: Susceptor -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden">
+                    <div class="w-10 h-10 mb-4 bg-red-100 dark:bg-red-900/40 text-red-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Susceptor</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Inteligentne opakowania do mikrofalówek. Koncentrują energię cieplną, zapewniając chrupkość potraw.
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Microwave Safe</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Crisping Tech</li>
+                    </ul>
+                </div>
+
+                <!-- Product 3: Barrier Board -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden border-green-500/20">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-green-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+                    <div class="w-10 h-10 mb-4 bg-green-100 dark:bg-green-900/40 text-green-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Barrier Board</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Ekologiczna tektura barierowa. Odporna na tłuszcze, oleje oraz skrajne temperatury (mrożenie/pieczenie).
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Compost Home</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Eco-Barrier</li>
+                    </ul>
+                </div>
+
+                <!-- Product 4: Standard PET -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden">
+                    <div class="w-10 h-10 mb-4 bg-yellow-100 dark:bg-yellow-900/40 text-yellow-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Laminacja PET</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Klasyczna laminacja Silver & Gold. Najwyższa wytrzymałość mechaniczna i eleganckie wykończenie opakowań.
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>High Gloss</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>Durable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Divider -->
+    <div class="h-1 w-full bg-gradient-to-r from-slate-200 via-blue-500 to-slate-200 dark:from-slate-900 dark:via-blue-800 dark:to-slate-900 opacity-50"></div>
+    
     <!-- Powerful Typography / CTA Section -->
     <section class="py-32 bg-slate-900 dark:bg-black relative overflow-hidden flex items-center justify-center text-center">
         <!-- Background Gradients -->
@@ -307,7 +411,7 @@
                         </div>
                         <div>
                             <p class="font-bold text-lg">Unifoil Sp. z o.o.</p>
-                            <p class="text-slate-500">ul. Przemysłowa 15<br>00-001 Warszawa, Polska</p>
+                            <p class="text-slate-500">ul. Miałki Szlak 52/5D<br> 80-717 Gdańsk, Polska</p>
                         </div>
                     </div>
 
@@ -317,7 +421,7 @@
                         </div>
                         <div>
                             <p class="font-bold text-lg">Email</p>
-                            <a href="mailto:biuro@unifoil.com" class="text-slate-500 hover:text-blue-600">biuro@unifoil.com</a>
+                            <a href="mailto:contact@unifoil.com" class="text-slate-500 hover:text-blue-600">contact@unifoil.com</a>
                         </div>
                     </div>
 
@@ -327,7 +431,7 @@
                         </div>
                         <div>
                             <p class="font-bold text-lg">Telefon</p>
-                            <p class="text-slate-500">+48 123 456 789</p>
+                            <p class="text-slate-500">+48 881 456 756 </p>
                         </div>
                     </div>
                 </div>
