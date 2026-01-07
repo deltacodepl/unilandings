@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifoil - Inspired Substrates | Ekologiczne Laminaty</title>
+    
+    <!-- Fonts: Montserrat (Headers) & Inter (Body) for a premium, geometric feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for standalone usage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuration for Unifoil Brand Colors -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        unifoil: {
+                            blue: '#005696',
+                            darkBlue: '#003d6b',
+                            green: '#78be20',
+                            leaf: '#4a8c2a',
+                            silver: '#e2e2e2',
+                        },
+                        dark: {
+                            bg: '#0f1115',
+                            card: '#181b21',
+                            border: '#2a2f3a'
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,86,150,0.4) 100%)',
+                        'metallic': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+                        'holo': 'linear-gradient(45deg, #005696 0%, #78be20 50%, #005696 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .dark .glass-panel {
+            background: rgba(24, 27, 33, 0.9);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #005696, #78be20);
+        }
+
+        .dark .text-gradient-silver {
+            background-image: linear-gradient(to right, #ffffff, #a1a1aa);
+        }
+
+        /* Holographic Hover Effect */
+        .holo-card:hover {
+            box-shadow: 0 0 20px rgba(120, 190, 32, 0.3);
+            border-color: #78be20;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-dark-bg dark:text-gray-200 transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-gray-200 dark:border-dark-border transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo Fallback if image missing -->
+            <div class="flex items-center gap-3">
+                <img src="unifoil-logo-1024x379.png" alt="Unifoil Logo" class="h-10 w-auto object-contain hidden md:block">
+                <span class="md:hidden font-display font-bold text-2xl text-unifoil-blue dark:text-white tracking-wide">UNIFOIL<sup class="text-xs">®</sup></span>
+            </div>
+
+            <!-- Menu -->
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
+                <a href="#products" class="hover:text-unifoil-blue dark:hover:text-unifoil-green transition">PRODUKTY</a>
+                <a href="#sustainability" class="hover:text-unifoil-blue dark:hover:text-unifoil-green transition">EKOLOGIA</a>
+                <a href="#about" class="hover:text-unifoil-blue dark:hover:text-unifoil-green transition">O NAS</a>
+                <a href="#contact" class="px-5 py-2.5 bg-unifoil-blue text-white rounded-sm hover:bg-unifoil-darkBlue transition shadow-lg shadow-unifoil-blue/20">KONTAKT</a>
+                
+                <!-- Dark Mode Toggle -->
+                <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-dark-border transition">
+                    <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image Implementation -->
+        <div class="absolute inset-0 z-0">
+            <!-- Placeholder for your specific image -->
+            <img src="photo-collage.png.png" alt="Unifoil Collage" class="w-full h-full object-cover">
+            <!-- Gradient Overlay for text readability -->
+            <div class="absolute inset-0 bg-hero-gradient"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <!-- Logo inside Hero (as requested) -->
+            <div class="mb-8 flex justify-center">
+                <img src="unifoil-logo-1024x379.png" alt="Unifoil Logo" class="h-24 md:h-32 object-contain filter drop-shadow-2xl">
+            </div>
+            
+            <p class="text-unifoil-green font-display font-medium text-lg md:text-xl tracking-[0.2em] uppercase mb-4 animate-fade-in-up">Inspired Substrates</p>
+            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                Gdzie ekologia <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">spotyka design.</span>
+            </h1>
+            <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                Tworzymy premium opakowania przyszłości. Lśniące, trwałe i w pełni biodegradowalne materiały dla Twojej marki.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#products" class="px-8 py-4 bg-unifoil-green text-white font-semibold rounded-sm hover:bg-unifoil-leaf transition transform hover:-translate-y-1 shadow-xl shadow-unifoil-green/30">
+                    Poznaj Ofertę
+                </a>
+                <a href="#contact" class="px-8 py-4 bg-transparent border border-white text-white font-semibold rounded-sm hover:bg-white hover:text-unifoil-blue transition">
+                    Zamów Próbki
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Social Proof -->
+    <div class="bg-white dark:bg-dark-card border-b border-gray-100 dark:border-dark-border py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-center text-sm text-gray-400 font-medium uppercase tracking-widest mb-6">Zaufali nam liderzy rynku</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale transition hover:grayscale-0 duration-500">
+                <!-- Text placeholders mimicking logos -->
+                <h3 class="text-2xl font-bold font-display text-gray-800 dark:text-gray-300">Budweiser</h3>
+                <h3 class="text-2xl font-bold font-display text-gray-800 dark:text-gray-300">Sensodyne</h3>
+                <h3 class="text-2xl font-bold font-display text-gray-800 dark:text-gray-300">Aquafresh</h3>
+                <h3 class="text-2xl font-bold font-display text-gray-800 dark:text-gray-300">Colgate</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Product Showcase: Unilustre -->
+    <section id="sustainability" class="py-24 bg-white dark:bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <!-- Content -->
+                <div class="lg:w-1/2 space-y-8">
+                    <div class="inline-block px-3 py-1 bg-unifoil-blue/10 text-unifoil-blue dark:text-sky-300 rounded-full text-xs font-bold tracking-widest uppercase">
+                        Flagowy Produkt
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white">
+                        <span class="text-unifoil-blue">Unilustre</span><sup class="text-lg">®</sup>
+                        <br>Luksus bez plastiku.
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                        Rewolucyjna technologia transferu metalicznego. Unilustre® to wybór dla marek, które nie chcą wybierać między estetyką a planetą. Uzyskaj efekt lustra bez użycia folii PET.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-unifoil-green flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white">W pełni recyklingowalne</h4>
+                                <p class="text-sm text-gray-500">Może być przetwarzane razem ze zwykłym papierem (repulpable).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-unifoil-green flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white">Efektowny Design</h4>
+                                <p class="text-sm text-gray-500">Wysoki połysk, efekty holograficzne i wyjątkowa głębia.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Visual -->
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-unifoil-blue to-unifoil-green opacity-20 blur-3xl rounded-full"></div>
+                    <div class="relative bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-2 shadow-2xl border border-white/20">
+                        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-800 relative group">
+                            <!-- Placeholder for metallic/leaf visual -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-gray-300 via-white to-gray-300 opacity-50 group-hover:opacity-75 transition duration-700"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-gray-400 font-display font-bold text-xl">Wizualizacja Unilustre</span>
+                            </div>
+                            <!-- Overlay gradient imitating holo effect -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Products Grid -->
+    <section id="products" class="py-24 bg-gray-50 dark:bg-[#12141a]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">Pozostałe Rozwiązania</h2>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                    Od standardowej laminacji po zaawansowane efekty holograficzne. 
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="bg-white dark:bg-dark-card p-8 rounded-lg shadow-lg border border-transparent dark:border-dark-border holo-card transition group">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-unifoil-blue rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-unifoil-blue transition">Laminacja PET</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        Klasyczne rozwiązanie zapewniające maksymalną trwałość i barierowość. Dostępne w wariantach metalizowanych, srebrnych i złotych.
+                    </p>
+                    <a href="#" class="text-unifoil-blue font-semibold text-sm hover:underline">Szczegóły &rarr;</a>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="bg-white dark:bg-dark-card p-8 rounded-lg shadow-lg border border-transparent dark:border-dark-border holo-card transition group">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 text-unifoil-green rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-unifoil-green transition">Holografia & Wzory</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        Przyciągnij wzrok klienta na półce. Setki gotowych wzorów dyfrakcyjnych i możliwość stworzenia customowych hologramów.
+                    </p>
+                    <a href="#" class="text-unifoil-green font-semibold text-sm hover:underline">Zobacz wzory &rarr;</a>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="bg-white dark:bg-dark-card p-8 rounded-lg shadow-lg border border-transparent dark:border-dark-border holo-card transition group">
+                    <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-gray-500 transition">Cold Foil & Transfer</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        Technologia cold foil pozwalająca na precyzyjne uszlachetnienia detali. Idealne dla branży kosmetycznej i alkoholowej.
+                    </p>
+                    <a href="#" class="text-gray-500 font-semibold text-sm hover:underline">Więcej &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-unifoil-blue via-blue-700 to-unifoil-darkBlue"></div>
+        <!-- Decorative geometric shape -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-white opacity-5 transform skew-x-12 translate-x-20"></div>
+
+        <div class="relative max-w-4xl mx-auto px-6 text-center text-white">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Stwórz opakowanie, które <br/>sprzedaje i chroni.</h2>
+            <p class="text-lg text-blue-100 mb-10">Zamów darmowy wzornik naszych podłoży i przekonaj się o jakości Unilustre®.</p>
+            <button class="bg-white text-unifoil-blue px-10 py-4 rounded-sm font-bold text-lg hover:bg-gray-100 transition shadow-2xl">
+                Rozpocznij Projekt
+            </button>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-24 bg-white dark:bg-dark-bg">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-display font-bold text-gray-900 dark:text-white">Skontaktuj się z nami</h2>
+                <div class="w-16 h-1 bg-unifoil-green mx-auto mt-4"></div>
+            </div>
+
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Imię i Nazwisko</label>
+                        <input type="text" class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-sm focus:ring-2 focus:ring-unifoil-blue outline-none transition dark:text-white" placeholder="Jan Kowalski">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Email Firmowy</label>
+                        <input type="email" class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-sm focus:ring-2 focus:ring-unifoil-blue outline-none transition dark:text-white" placeholder="jan@firma.pl">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Wybierz temat</label>
+                    <select class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-sm focus:ring-2 focus:ring-unifoil-blue outline-none transition dark:text-white">
+                        <option>Zapytanie o Unilustre®</option>
+                        <option>Laminacja PET / Wzory</option>
+                        <option>Współpraca / Dystrybucja</option>
+                        <option>Inne</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Wiadomość</label>
+                    <textarea rows="4" class="w-full px-4 py-3 bg-gray-50 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-sm focus:ring-2 focus:ring-unifoil-blue outline-none transition dark:text-white" placeholder="Opisz swój projekt..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-gray-900 dark:bg-unifoil-green text-white font-bold rounded-sm hover:opacity-90 transition">
+                    Wyślij Wiadomość
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-2xl font-display font-bold tracking-wide">
+                UNIFOIL<sup class="text-xs">®</sup>
+            </div>
+            <div class="flex gap-8 text-sm text-gray-400">
+                <a href="#" class="hover:text-white transition">Polityka Prywatności</a>
+                <a href="#" class="hover:text-white transition">Warunki Użytkowania</a>
+                <a href="#" class="hover:text-white transition">LinkedIn</a>
+            </div>
+            <div class="text-sm text-gray-500">
+                &copy; 2024 Unifoil Corporation. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

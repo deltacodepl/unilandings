@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifoil - Inspired Substrates | Unilustre®</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Brand Colors based on Unifoil Logo & Leaf Image */
+            --primary-blue: #005596;
+            --primary-dark-blue: #003366;
+            --leaf-green: #7ab800;
+            --leaf-light: #a3d945;
+            
+            /* Gradient Accents (Vibrant) */
+            --accent-gradient: linear-gradient(135deg, #FF0055, #9D00FF, #005596, #7ab800);
+            --metallic-gradient: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            --holo-gradient: linear-gradient(45deg, rgba(255,255,255,0.5) 0%, rgba(255,0,0,0.3) 25%, rgba(0,255,0,0.3) 50%, rgba(0,0,255,0.3) 75%, rgba(255,255,255,0.5) 100%);
+
+            /* Light Mode Variables */
+            --bg-color: #ffffff;
+            --surface-color: #f4f6f8;
+            --text-main: #111111;
+            --text-secondary: #555555;
+            --border-color: #e0e0e0;
+            
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 32px;
+            --spacing-lg: 64px;
+            --spacing-xl: 120px;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0a0a0a;
+            --surface-color: #161616;
+            --text-main: #ffffff;
+            --text-secondary: #aaaaaa;
+            --border-color: #333333;
+            --metallic-gradient: linear-gradient(120deg, #2c3e50 0%, #000000 100%);
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover { background: var(--primary-dark-blue); transform: translateY(-2px); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--text-main);
+        }
+        .btn-outline:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(var(--bg-color), 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span { color: var(--leaf-green); }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #000; /* Always dark bg for hero to make image pop */
+            color: white;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 50%;
+            padding-right: 50px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(to right, #fff, #b0b0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: var(--spacing-lg);
+            max-width: 500px;
+            border-left: 4px solid var(--leaf-green);
+            padding-left: 20px;
+        }
+
+        /* Image styling mimicking the leaf reference */
+        .hero-image-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            z-index: 1;
+            /* Placeholder for the user's provided leaf image */
+            background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center left;
+            mask-image: linear-gradient(to right, transparent, black 20%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+        }
+        
+        /* Simulating the vibrant leaf vein structure with CSS overlay if image fails */
+        .hero-overlay {
+            position: absolute;
+            top:0; left:0; right:0; bottom:0;
+            background: radial-gradient(circle at 70% 50%, transparent 0%, #000 100%);
+            z-index: 1;
+        }
+
+        /* Stats / Social Proof */
+        .stats-bar {
+            padding: var(--spacing-md) 0;
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item h3 { font-size: 2rem; color: var(--primary-blue); }
+        .stat-item p { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Offer / Features */
+        .section-padding { padding: var(--spacing-xl) 0; }
+        .section-header { margin-bottom: var(--spacing-lg); max-width: 700px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .section-header .subtitle { color: var(--leaf-green); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+
+        /* Main Product: Unilustre */
+        .product-highlight {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .product-viz {
+            position: relative;
+            height: 500px;
+            background: var(--surface-color);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CSS Art to simulate the foil box effect */
+        .foil-card {
+            width: 300px;
+            height: 400px;
+            background: red;
+            position: relative;
+            transform: rotate(-5deg);
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
+            overflow: hidden;
+        }
+        .foil-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.4) 100%);
+            z-index: 2;
+        }
+        .foil-text {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            color: white;
+            font-weight: 800;
+            font-size: 2rem;
+            z-index: 3;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .foil-card:hover { transform: rotate(0deg) scale(1.02); }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .feature-card {
+            padding: 30px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .feature-card:hover {
+            border-color: var(--leaf-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: var(--surface-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        /* Comparison Table/Section */
+        .product-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: var(--spacing-lg);
+        }
+        .product-item {
+            background: var(--surface-color);
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-item h3 { margin-bottom: 10px; }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .badge-eco { background: rgba(122, 184, 0, 0.15); color: var(--leaf-green); }
+        .badge-tech { background: rgba(0, 85, 150, 0.15); color: var(--primary-blue); }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--text-main);
+            color: var(--bg-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--accent-gradient);
+        }
+        .cta-big-text {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        /* Contact Form */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; }
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-main);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .form-control:focus { outline: none; border-color: var(--primary-blue); }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            color: #888;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 { color: white; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col a { color: #888; text-decoration: none; transition: 0.2s; }
+        .footer-col a:hover { color: var(--leaf-green); }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content { width: 100%; padding-right: 0; text-align: center; }
+            .hero-image-container { opacity: 0.4; width: 100%; mask-image: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { margin: 0 auto var(--spacing-lg); border-left: none; }
+            .product-highlight { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Mobile menu simplified for mockup */
+            .product-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">UNI<span>FOIL</span></a>
+            <ul class="nav-links">
+                <li><a href="#unilustre">Unilustre®</a></li>
+                <li><a href="#products">Produkty</a></li>
+                <li><a href="#sustainability">Zrównoważony Rozwój</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <div style="display:flex; gap:10px; align-items:center;">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+                    ◑
+                </button>
+                <a href="#contact" class="btn btn-primary">Zamów Próbkę</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image-container"></div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <p style="color:var(--leaf-green); font-weight:700; letter-spacing:2px; font-size:0.9rem; margin-bottom:10px; border:none; padding:0;">INSPIRED SUBSTRATES</p>
+                <h1>Gdzie ekologia<br>spotyka design.</h1>
+                <p>Tworzymy opakowania przyszłości. Odkryj Unilustre® – rewolucyjną technologię metalizacji, która łączy luksusowy wygląd z pełną recyklingowalnością.</p>
+                <div style="display:flex; gap: 15px; flex-wrap:wrap; justify-content: flex-start;">
+                    <a href="#unilustre" class="btn btn-primary">Poznaj Unilustre®</a>
+                    <a href="#contact" class="btn btn-outline" style="color:white; border-color:white;">Skontaktuj się</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Stats -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Recyklingowalne</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Zero</h3>
+                    <p>Plastiku (Unilustre)</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Premium</h3>
+                    <p>Efekt Błysku</p>
+                </div>
+                <div class="stat-item">
+                    <h3>ISO</h3>
+                    <p>Certyfikowana Jakość</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Product Feature: Unilustre -->
+    <section id="unilustre" class="section-padding">
+        <div class="container">
+            <div class="product-highlight">
+                <div class="product-viz">
+                    <!-- Geometric Background Elements -->
+                    <div style="position:absolute; width: 80%; height: 80%; border: 1px solid rgba(0,0,0,0.1); border-radius: 50%;"></div>
+                    <div style="position:absolute; width: 60%; height: 60%; border: 1px solid rgba(0,0,0,0.1); border-radius: 50%;"></div>
+                    
+                    <!-- Simulated Product (Red Metallic Box from prompt) -->
+                    <div class="foil-card">
+                        <span class="foil-text">Unilustre®</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="section-header">
+                        <span class="subtitle">Flagowy Produkt</span>
+                        <h2>Unilustre® <span style="font-weight:300; color:var(--text-secondary)">Technologia Transferu</span></h2>
+                    </div>
+                    <p style="margin-bottom: 20px; font-size:1.1rem; color:var(--text-secondary);">
+                        Unilustre® to proces, który przenosi metalizowaną warstwę na papier lub karton, a następnie usuwa folię nośną (PET). Rezultatem jest olśniewające opakowanie, które jest <strong>w pełni repulpowalne i recyklingowalne</strong>.
+                    </p>
+                    <ul style="list-style:none; margin-bottom: 30px;">
+                        <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+                            <span style="color:var(--leaf-green)">✔</span> Brak warstwy plastikowej na finalnym produkcie
+                        </li>
+                        <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+                            <span style="color:var(--leaf-green)">✔</span> Idealne pod nadruk UV i konwencjonalny
+                        </li>
+                        <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+                            <span style="color:var(--leaf-green)">✔</span> Dostępne efekty holograficzne i soczewkowe
+                        </li>
+                    </ul>
+                    <a href="#" style="color:var(--primary-blue); font-weight:700; text-decoration:none; border-bottom:2px solid var(--primary-blue);">Pobierz specyfikację techniczną &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Products Grid -->
+    <section id="products" class="section-padding" style="background:var(--surface-color);">
+        <div class="container">
+            <div class="section-header text-center" style="margin: 0 auto 50px auto; text-align:center;">
+                <span class="subtitle">Nasza Oferta</span>
+                <h2>Rozwiązania dla każdej branży</h2>
+            </div>
+
+            <div class="product-row">
+                <!-- Card 1 -->
+                <div class="product-item">
+                    <span class="badge badge-tech">Laminacja</span>
+                    <h3>Laminaty PET/OPP</h3>
+                    <div style="height:100px; background:linear-gradient(135deg, #ddd, #fff, #999); margin: 20px 0; border-radius:8px;"></div>
+                    <p style="font-size:0.9rem; color:var(--text-secondary);">Klasyczna wytrzymałość. Laminacja folią metalizowaną zapewniająca najwyższą barierowość i sztywność.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="product-item">
+                    <span class="badge badge-tech" style="background:rgba(157, 0, 255, 0.1); color:#9D00FF;">Holografia</span>
+                    <h3>HoloPRISM®</h3>
+                    <div style="height:100px; background:var(--holo-gradient); margin: 20px 0; border-radius:8px;"></div>
+                    <p style="font-size:0.9rem; color:var(--text-secondary);">Trójwymiarowe wzory i efekty tęczy, które przyciągają wzrok na półce sklepowej.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="product-item">
+                    <span class="badge badge-eco">Eko-Laminaty</span>
+                    <h3>Biodegradowalne</h3>
+                    <div style="height:100px; background:linear-gradient(135deg, #a8e063, #56ab2f); margin: 20px 0; border-radius:8px;"></div>
+                    <p style="font-size:0.9rem; color:var(--text-secondary);">Laminaty na bazie celulozy i PLA, łączące estetykę z kompostowalnością.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Values -->
+    <section id="sustainability" class="section-padding">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-box">♻</div>
+                    <h4>Cyrkularność</h4>
+                    <p style="font-size:0.9rem; margin-top:10px; color:var(--text-secondary);">Nasze produkty są projektowane z myślą o zamkniętym obiegu surowców.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">⚙</div>
+                    <h4>Innowacja</h4>
+                    <p style="font-size:0.9rem; margin-top:10px; color:var(--text-secondary);">Własne laboratoria R&D pracujące nad nowymi strukturami podłoży.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">★</div>
+                    <h4>Design</h4>
+                    <p style="font-size:0.9rem; margin-top:10px; color:var(--text-secondary);">Nielimitowane możliwości wykończeń: mat, błysk, soft-touch.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">✈</div>
+                    <h4>Globalny Zasięg</h4>
+                    <p style="font-size:0.9rem; margin-top:10px; color:var(--text-secondary);">Dostarczamy rozwiązania dla marek na całym świecie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding cta-section">
+        <div class="container">
+            <div class="cta-big-text">Twoja marka zasługuje<br>na najlepszą oprawę.</div>
+            <p style="max-width:600px; margin: 0 auto 30px auto; opacity:0.9;">Dołącz do liderów rynku kosmetycznego, farmaceutycznego i spożywczego, którzy wybrali Unifoil.</p>
+            <a href="#contact" class="btn" style="background:white; color:var(--text-main);">Rozpocznij Projekt</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Kontakt</span>
+                <h2>Porozmawiajmy o współpracy</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p style="font-size:1.1rem; margin-bottom:30px; color:var(--text-secondary);">Nasi eksperci pomogą Ci dobrać idealne podłoże do Twojego projektu opakowania.</p>
+                    
+                    <div style="margin-bottom:20px;">
+                        <strong>Adres:</strong><br>
+                        Unifoil Corporation<br>
+                        Passaic, NJ (USA) & Global Partners
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <strong>Email:</strong><br>
+                        sales@unifoil.com
+                    </div>
+                    
+                    <!-- Decorative element -->
+                    <div style="height: 150px; width: 100%; background: var(--accent-gradient); border-radius:12px; margin-top:30px; opacity:0.8;"></div>
+                </div>
+
+                <form class="contact-form" style="background:var(--surface-color); padding:40px; border-radius:12px;">
+                    <div class="form-group">
+                        <label for="name">Imię i Nazwisko</label>
+                        <input type="text" id="name" class="form-control" placeholder="Jan Kowalski">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adres Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="jan@firma.pl">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Zainteresowanie</label>
+                        <select id="interest" class="form-control">
+                            <option>Unilustre (Bez plastiku)</option>
+                            <option>Laminacja PET/OPP</option>
+                            <option>Holografia</option>
+                            <option>Inne</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Wiadomość</label>
+                        <textarea id="message" rows="4" class="form-control" placeholder="Opisz swój projekt..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Wyślij Wiadomość</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="font-size:1.2rem; margin-bottom:15px; display:inline-block;">UNI<span>FOIL</span></a>
+                    <p>Lider innowacji w dziedzinie podłoży metalizowanych i holograficznych.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Nawigacja</h4>
+                    <div style="display:flex; gap:40px;">
+                        <ul>
+                            <li><a href="#">Strona Główna</a></li>
+                            <li><a href="#">O nas</a></li>
+                            <li><a href="#">Kariera</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Unilustre</a></li>
+                            <li><a href="#">Technologie</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Polityka Prywatności</a></li>
+                        <li><a href="#">Regulamin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align:center; padding-top:20px; border-top:1px solid #222;">
+                &copy; 2026 Unifoil Corporation. Wszelkie prawa zastrzeżone.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+        }
+    </script>
+</body>
+</html>

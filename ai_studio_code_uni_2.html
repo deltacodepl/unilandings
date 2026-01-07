@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifoil Polska | Premium Lamination & Packaging</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            slate: '#1E293B',
+                            silver: '#E2E8F0',
+                            accent: '#38BDF8', // Light Blue holographic hint
+                            gold: '#F59E0B'
+                        }
+                    },
+                    backgroundImage: {
+                        'holo-gradient': 'linear-gradient(135deg, #E2E8F0 0%, #F1F5F9 25%, #E0F2FE 50%, #F0F9FF 75%, #FFFFFF 100%)',
+                        'holo-dark': 'linear-gradient(135deg, #1e293b 0%, #334155 50%, #0f172a 100%)',
+                        'metallic-shine': 'linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Holographic Text Effect */
+        .text-holo {
+            background: linear-gradient(90deg, #94a3b8, #38bdf8, #c084fc, #94a3b8);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hover lift effect */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-brand-dark dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo Placeholder -->
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-slate-400 to-slate-600 rounded-sm flex items-center justify-center text-white font-bold font-display">U</div>
+                <span class="text-xl font-display font-bold tracking-tight">UNIFOIL</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#unilustre" class="hover:text-brand-accent transition-colors">Unilustre®</a>
+                <a href="#food-safe" class="hover:text-brand-accent transition-colors">Produkty Spożywcze</a>
+                <a href="#contact" class="hover:text-brand-accent transition-colors">Kontakt</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="#contact" class="px-5 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-brand-dark font-semibold rounded-md hover:opacity-90 transition-opacity text-sm">
+                    Zapytaj o wycenę
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent dark:from-slate-800/50 opacity-60"></div>
+        <div class="absolute bottom-0 left-0 -z-10 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Text Content -->
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-slate-800 border border-blue-100 dark:border-slate-700 text-blue-600 dark:text-blue-400 text-xs font-semibold tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                    Nowa Fabryka w Polsce
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-display font-bold leading-tight">
+                    Blask, który <br>
+                    <span class="text-holo">przyciąga wzrok.</span>
+                </h1>
+                
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
+                    Lider w produkcji laminatów premium. Łączymy ekologię <strong>Unilustre®</strong> z certyfikowanymi rozwiązaniami dla branży spożywczej. 
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#products" class="px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        Zobacz Produkty
+                    </a>
+                    <a href="#unilustre" class="px-8 py-4 bg-transparent border border-slate-300 dark:border-slate-700 font-semibold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                        Technologia Unilustre
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="pt-8 flex items-center gap-6 text-slate-400 grayscale opacity-70">
+                    <div class="flex items-center gap-2 text-xs font-bold border px-2 py-1 rounded">ISO 9001</div>
+                    <div class="flex items-center gap-2 text-xs font-bold border px-2 py-1 rounded">BRCGS Packaging</div>
+                    <div class="flex items-center gap-2 text-xs font-bold border px-2 py-1 rounded">Eco-Friendly</div>
+                </div>
+            </div>
+
+            <!-- Hero Visual (Abstract Butterfly/Flower) -->
+            <div class="relative group perspective-1000">
+                <!-- Placeholder for Holographic Butterfly Image -->
+                <!-- Ideally a WebGL canvas or high-res PNG -->
+                <div class="relative w-full aspect-square max-w-lg mx-auto transform transition-transform duration-700 group-hover:rotate-y-12 group-hover:rotate-x-6">
+                    <!-- Stylized Geometric Butterfly/Flower using CSS Shapes/Gradients for mockup -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-slate-200 to-slate-100 dark:from-slate-700 dark:to-slate-600 rounded-[2rem] shadow-2xl overflow-hidden border border-white/20">
+                        <!-- Holographic Effect Overlay -->
+                        <div class="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+                        <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-gradient-to-br from-transparent via-blue-400/20 to-purple-500/20 rotate-45 animate-pulse"></div>
+                        
+                        <!-- Symbolic Centerpiece -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <!-- Geometric Butterfly Representation -->
+                            <svg viewBox="0 0 200 200" class="w-64 h-64 drop-shadow-[0_20px_50px_rgba(56,189,248,0.4)]">
+                                <defs>
+                                    <linearGradient id="holo" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#38BDF8" />
+                                        <stop offset="50%" stop-color="#C084FC" />
+                                        <stop offset="100%" stop-color="#F472B6" />
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#holo)" d="M100 100 C 60 40, 10 60, 20 100 C 10 140, 60 160, 100 100 Z" opacity="0.8" />
+                                <path fill="url(#holo)" d="M100 100 C 140 40, 190 60, 180 100 C 190 140, 140 160, 100 100 Z" opacity="0.8" />
+                                <circle cx="100" cy="100" r="5" fill="white" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Product overlay text -->
+                        <div class="absolute bottom-6 left-6">
+                            <p class="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-300 mb-1">Materiał</p>
+                            <p class="text-2xl font-display font-bold text-slate-800 dark:text-white">Unilustre®</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Innovation Section (Unilustre) -->
+    <section id="unilustre" class="py-24 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-accent font-bold tracking-wider uppercase text-sm">Główny Kierunek Rozwoju</span>
+                <h2 class="text-3xl lg:text-4xl font-display font-bold mt-2 mb-6 text-slate-900 dark:text-white">Unilustre® — Rewolucja bez Plastiku</h2>
+                <p class="text-slate-600 dark:text-slate-400">
+                    Nasza flagowa technologia pozwala na uzyskanie metalicznego, holograficznego efektu bezpośrednio na papierze, bez użycia folii PET. 
+                    W pełni ekologiczna, biodegradowalna i gotowa na przyszłość.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 transition-colors border border-slate-100 dark:border-slate-700">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        ♻️
+                    </div>
+                    <h3 class="text-xl font-bold font-display mb-3">100% Recykling</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Produkt wolny od plastiku. Papier z efektem Unilustre® można poddać procesowi repulpacji tak samo jak zwykłą makulaturę.
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 transition-colors border border-slate-100 dark:border-slate-700">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        ✨
+                    </div>
+                    <h3 class="text-xl font-bold font-display mb-3">Efekt Premium</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Niezrównany połysk i możliwości holograficzne. Idealne dla branży kosmetycznej i dóbr luksusowych.
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 transition-colors border border-slate-100 dark:border-slate-700">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        📉
+                    </div>
+                    <h3 class="text-xl font-bold font-display mb-3">Redukcja CO2</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Lżejsze opakowania, mniej odpadów produkcyjnych i niższy ślad węglowy dzięki eliminacji warstw laminatu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Industry Products -->
+    <section id="food-safe" class="py-24 bg-slate-50 dark:bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="text-slate-500 dark:text-slate-400 font-bold uppercase text-sm">Produkcja w Polsce</span>
+                    <h2 class="text-3xl lg:text-4xl font-display font-bold mt-2 text-slate-900 dark:text-white">Rozwiązania dla Gastronomii</h2>
+                </div>
+                <p class="max-w-md text-slate-600 dark:text-slate-400 text-sm">
+                    Nasz polski zakład oferuje specjalistyczne produkty laminowane, spełniające rygorystyczne normy kontaktu z żywnością.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Product 1: Baking Board -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/></svg>
+                    </div>
+                    <div class="w-10 h-10 mb-4 bg-orange-100 dark:bg-orange-900/40 text-orange-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold font-display mb-2">Baking Board</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Podkłady cukiernicze odporne na wodę i tłuszcze. Dedykowane do pieczenia w wysokich temperaturach.
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Oven Safe</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Wodoodporne</li>
+                    </ul>
+                </div>
+
+                <!-- Product 2: Susceptor -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden">
+                    <div class="w-10 h-10 mb-4 bg-red-100 dark:bg-red-900/40 text-red-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold font-display mb-2">Susceptor</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Inteligentne opakowania do mikrofalówek. Koncentrują energię cieplną, zapewniając chrupkość potraw.
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Microwave Safe</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Crisping Tech</li>
+                    </ul>
+                </div>
+
+                <!-- Product 3: Barrier Board -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden border-green-500/20">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-green-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+                    <div class="w-10 h-10 mb-4 bg-green-100 dark:bg-green-900/40 text-green-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold font-display mb-2">Barrier Board</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Ekologiczna tektura barierowa. Odporna na tłuszcze, oleje oraz skrajne temperatury (mrożenie/pieczenie).
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Compost Home</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Eco-Barrier</li>
+                    </ul>
+                </div>
+
+                <!-- Product 4: Standard PET -->
+                <div class="glass-card p-6 rounded-xl hover-lift group relative overflow-hidden">
+                    <div class="w-10 h-10 mb-4 bg-yellow-100 dark:bg-yellow-900/40 text-yellow-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold font-display mb-2">Laminacja PET</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 h-16">
+                        Klasyczna laminacja Silver & Gold. Najwyższa wytrzymałość mechaniczna i eleganckie wykończenie opakowań.
+                    </p>
+                    <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>High Gloss</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>Durable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Divider -->
+    <div class="h-1 w-full bg-gradient-to-r from-slate-200 via-brand-accent to-slate-200 dark:from-brand-dark dark:via-blue-900 dark:to-brand-dark opacity-50"></div>
+
+    <!-- CTA / Contact Section -->
+    <section id="contact" class="py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl lg:text-5xl font-display font-bold mb-8 leading-tight">
+                Zrealizuj swój projekt z <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Unifoil Polska</span>
+            </h2>
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+                Skontaktuj się z naszym zespołem technologicznym, aby dobrać odpowiedni substrat do Twojego produktu.
+            </p>
+
+            <form class="max-w-md mx-auto space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Email</label>
+                    <input type="email" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="twoj@email.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Wiadomość</label>
+                    <textarea class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all h-32" placeholder="Opisz swoje zapotrzebowanie..."></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-lg shadow-lg hover:shadow-xl transform active:scale-95 transition-all">
+                    Wyślij Zapytanie
+                </button>
+            </form>
+
+            <div class="mt-12 pt-12 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-slate-500">
+                <div>
+                    <strong class="block text-slate-900 dark:text-white mb-1">Adres Fabryki</strong>
+                    Polska, Unifoil Plant<br>ul. Przemysłowa 10
+                </div>
+                <div>
+                    <strong class="block text-slate-900 dark:text-white mb-1">Kontakt</strong>
+                    +48 123 456 789<br>poland@unifoil.com
+                </div>
+                <div>
+                    <strong class="block text-slate-900 dark:text-white mb-1">Social Media</strong>
+                    <a href="#" class="hover:text-blue-500">LinkedIn</a> • <a href="#" class="hover:text-blue-500">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-6 bg-slate-50 dark:bg-brand-dark border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">
+        &copy; 2024 Unifoil Corporation. All rights reserved.
+    </footer>
+
+    <script>
+        // Simple script to handle scroll reveal if needed, mostly handled by CSS
+        // Dark mode logic is inline
+    </script>
+</body>
+</html>

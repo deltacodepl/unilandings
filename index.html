@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifoil - Laminacja i Uszlachetnianie Premium</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        uniblue: '#0F172A',
+                        unigrey: '#F8FAFC',
+                        accent: '#3B82F6',
+                    },
+                    backgroundImage: {
+                        'holo-gradient': 'linear-gradient(135deg, #FF0080 0%, #7928CA 50%, #FF0080 100%)',
+                        'silver-gradient': 'linear-gradient(135deg, #E2E2E2 0%, #9CA3AF 50%, #E2E2E2 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Holographic Text Effect */
+        .text-holo {
+            background: linear-gradient(to right, #ec4899, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .dark .text-holo {
+            background: linear-gradient(to right, #f472b6, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Smooth geometric reveal */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Theme Toggle (Fixed) -->
+    <button id="theme-toggle" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-slate-200 dark:bg-slate-800 shadow-lg hover:scale-110 transition-transform">
+        <i data-lucide="sun" class="w-6 h-6 block dark:hidden"></i>
+        <i data-lucide="moon" class="w-6 h-6 hidden dark:block text-white"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-sm"></div>
+                <span class="text-2xl font-bold tracking-tight">UNIFOIL</span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-600 dark:text-slate-400">
+                <a href="#oferta" class="hover:text-blue-600 dark:hover:text-white transition-colors">OFERTA</a>
+                <a href="#technologia" class="hover:text-blue-600 dark:hover:text-white transition-colors">TECHNOLOGIA</a>
+                <a href="#o-nas" class="hover:text-blue-600 dark:hover:text-white transition-colors">O NAS</a>
+            </div>
+
+            <a href="#kontakt" class="hidden md:inline-flex px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold rounded-sm hover:opacity-90 transition-opacity">
+                WYCENA
+            </a>
+            
+            <!-- Mobile Menu Icon -->
+            <button class="md:hidden">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-slate-50 dark:bg-slate-900/50 clip-path-polygon"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                    Nowa jakość uszlachetniania
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+                    Nadajemy blask <br>
+                    <span class="text-holo">Twoim wizjom.</span>
+                </h1>
+                
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
+                    Lider w produkcji papierów i kartonów metalizowanych oraz laminatów. 
+                    Tworzymy opakowania, które przyciągają wzrok i budują prestiż marki.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#oferta" class="inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30">
+                        Zobacz Produkty
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                    <a href="#kontakt" class="inline-flex justify-center items-center px-8 py-4 border border-slate-300 dark:border-slate-700 font-bold rounded-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                        Zamów Próbnik
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative lg:h-[600px] flex items-center justify-center">
+                <!-- Abstract Geometric Backdrop -->
+                <div class="absolute w-[500px] h-[500px] bg-gradient-to-tr from-purple-200 to-blue-200 dark:from-purple-900/20 dark:to-blue-900/20 rounded-full blur-3xl opacity-50"></div>
+                
+                <!-- Main Visual (Flower/Nature + Holographic) -->
+                <div class="relative z-10 w-full max-w-md">
+                    <!-- Image logic: Using a placeholder that looks like a metallic/holographic flower -->
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Holographic Texture Flower" 
+                         class="rounded-xl shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700 ease-out border-4 border-white dark:border-slate-800 object-cover h-[500px] w-full">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-6 rounded-lg shadow-xl border border-slate-100 dark:border-slate-700">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400">
+                                <i data-lucide="leaf" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase font-bold">Ekologia</p>
+                                <p class="font-bold text-slate-900 dark:text-white">Folie Eco-Friendly</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Social Proof -->
+    <section class="py-12 border-y border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-center text-sm font-semibold text-slate-400 mb-8 uppercase tracking-widest">Zaufali nam liderzy branży opakowaniowej</p>
+            <div class="flex flex-wrap justify-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- Simulated Logos (Text for mockup) -->
+                <span class="text-2xl font-bold font-sans text-slate-800 dark:text-slate-200 flex items-center gap-2"><i data-lucide="box" class="w-6 h-6"></i> PACKGroup</span>
+                <span class="text-2xl font-bold font-serif text-slate-800 dark:text-slate-200 flex items-center gap-2"><i data-lucide="gem" class="w-6 h-6"></i> LUXPRINT</span>
+                <span class="text-2xl font-bold font-mono text-slate-800 dark:text-slate-200 flex items-center gap-2"><i data-lucide="printer" class="w-6 h-6"></i> DRUK24</span>
+                <span class="text-2xl font-bold font-sans text-slate-800 dark:text-slate-200 flex items-center gap-2"><i data-lucide="layers" class="w-6 h-6"></i> MULTIFOIL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Grid Section -->
+    <section id="oferta" class="py-24 bg-white dark:bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nasze rozwiązania</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 dark:text-slate-400">Oferujemy szeroką gamę laminatów i folii, które podnoszą wartość estetyczną i wytrzymałość każdego opakowania.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="card-hover group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="layers" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Laminacja "Na Mokro"</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Idealna gładkość i zabezpieczenie druku. Stosujemy kleje wodne najwyższej jakości, bezpieczne dla żywności.
+                    </p>
+                    <a href="#" class="text-blue-600 dark:text-blue-400 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Szczegóły <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="card-hover group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="sparkles" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Folie Holograficzne</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Unikalne efekty świetlne, które wyróżnią produkt na półce. Dostępne wzory standardowe oraz customowe.
+                    </p>
+                    <a href="#" class="text-purple-600 dark:text-purple-400 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Wzornik <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="card-hover group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gray-500/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="w-14 h-14 bg-gray-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="maximize" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Karton Metalizowany</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Połączenie sztywności kartonu z metalicznym blyskiem folii PET/OPP. Doskonały do opakowań premium.
+                    </p>
+                    <a href="#" class="text-slate-700 dark:text-slate-300 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Specyfikacja <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="card-hover group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+                    <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Folie Soft Touch</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Aksamitne w dotyku wykończenie, które dodaje elegancji i jest odporne na zarysowania i ślady palców.
+                    </p>
+                    <a href="#" class="text-indigo-600 dark:text-indigo-400 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Szczegóły <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="card-hover group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+                    <div class="w-14 h-14 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="recycle" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Eco-Laminacja</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Biodegradowalne folie octanowe (celulozowe). Odpowiedzialny wybór dla nowoczesnych marek.
+                    </p>
+                    <a href="#" class="text-teal-600 dark:text-teal-400 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Certyfikaty <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- CTA Card -->
+                <div class="bg-slate-900 dark:bg-blue-600 p-8 rounded-2xl flex flex-col justify-center items-center text-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-holo-gradient opacity-10"></div>
+                    <h3 class="text-xl font-bold text-white mb-2 z-10">Niestandardowe zlecenie?</h3>
+                    <p class="text-slate-300 dark:text-blue-100 text-sm mb-6 z-10">Realizujemy projekty na specjalne zamówienie.</p>
+                    <a href="#kontakt" class="px-6 py-3 bg-white text-slate-900 font-bold rounded-sm w-full hover:bg-slate-100 transition-colors z-10">
+                        Skontaktuj się
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Powerful Typography / CTA Section -->
+    <section class="py-32 bg-slate-900 dark:bg-black relative overflow-hidden flex items-center justify-center text-center">
+        <!-- Background Gradients -->
+        <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[100px]"></div>
+
+        <div class="relative z-10 max-w-4xl px-6">
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-8">
+                Wyróżnij się albo <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-400 to-slate-600">zgiń w tłumie.</span>
+            </h2>
+            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+                Opakowanie to pierwszy kontakt klienta z Twoim produktem. Spraw, by było niezapomniane dzięki technologii Unifoil.
+            </p>
+            <a href="#kontakt" class="inline-block px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-lg rounded-sm shadow-xl shadow-purple-500/20 transition-all transform hover:scale-105">
+                Rozpocznij Współpracę
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <section id="kontakt" class="py-24 bg-slate-50 dark:bg-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+            
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-3xl font-bold mb-6">Jesteśmy do Twojej dyspozycji</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-12">
+                    Masz pytania dotyczące technologii? Potrzebujesz wyceny dla dużej partii materiału? Nasi eksperci pomogą Ci dobrać najlepsze rozwiązanie.
+                </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-white dark:bg-slate-800 shadow-sm rounded-lg text-blue-600">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">Unifoil Sp. z o.o.</p>
+                            <p class="text-slate-500">ul. Przemysłowa 15<br>00-001 Warszawa, Polska</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-white dark:bg-slate-800 shadow-sm rounded-lg text-blue-600">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">Email</p>
+                            <a href="mailto:biuro@unifoil.com" class="text-slate-500 hover:text-blue-600">biuro@unifoil.com</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-white dark:bg-slate-800 shadow-sm rounded-lg text-blue-600">
+                            <i data-lucide="phone" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">Telefon</p>
+                            <p class="text-slate-500">+48 123 456 789</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Imię</label>
+                            <input type="text" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Nazwisko</label>
+                            <input type="text" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Email Firmowy</label>
+                        <input type="email" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Wiadomość</label>
+                        <textarea rows="4" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"></textarea>
+                    </div>
+
+                    <button type="button" class="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-lg hover:opacity-90 transition-opacity">
+                        Wyślij Wiadomość
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-slate-500 text-sm">
+                &copy; 2023 Unifoil. Wszelkie prawa zastrzeżone.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Init Scripts -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            htmlElement.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+        });
+    </script>
+</body>
+</html>

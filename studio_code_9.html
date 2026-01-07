@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifoil - Rewolucja w Laminacji | Unilustre®</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Primary Blue
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        holo: {
+                            start: '#FF00CC',
+                            mid: '#333399',
+                            end: '#00CCFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'holo-gradient': 'linear-gradient(135deg, #FF00CC 0%, #333399 50%, #00CCFF 100%)',
+                        'holo-shimmer': 'linear-gradient(45deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 60%)'
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { backgroundPosition: '200% 0' },
+                            '100%': { backgroundPosition: '-200% 0' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Holographic Text Effect */
+        .text-holo {
+            background: linear-gradient(90deg, #FF00CC, #333399, #00CCFF, #FF00CC);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-anim 8s ease infinite;
+        }
+
+        @keyframes gradient-anim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Flower/Leaf Shape for Hero */
+        .organic-shape {
+            border-radius: 63% 37% 39% 61% / 44% 59% 41% 56%;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Smooth reveal for sections */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-900 dark:bg-slate-900 dark:text-white transition-colors duration-300 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-panel" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-8 h-8 rounded-lg bg-holo-gradient"></div>
+                    <span class="font-display font-bold text-2xl tracking-tight text-slate-900 dark:text-white">UNIFOIL</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#unilustre" class="text-sm font-medium hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Unilustre®</a>
+                    <a href="#products" class="text-sm font-medium hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Laminacja PET</a>
+                    <a href="#sustainability" class="text-sm font-medium hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Ekologia</a>
+                    <a href="#contact" class="px-5 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">Kontakt</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden text-slate-700"></i>
+                        <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t dark:border-slate-700">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#unilustre" class="block px-3 py-2 text-base font-medium rounded-md hover:bg-gray-100 dark:hover:bg-slate-800">Unilustre®</a>
+                <a href="#products" class="block px-3 py-2 text-base font-medium rounded-md hover:bg-gray-100 dark:hover:bg-slate-800">Laminacja</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium rounded-md text-brand-500">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 -z-10 w-3/4 h-full bg-gradient-to-l from-gray-100 to-transparent dark:from-slate-800 opacity-50"></div>
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-8 reveal active">
+                    <div class="inline-flex items-center space-x-2 bg-white dark:bg-slate-800 rounded-full px-4 py-1.5 shadow-sm border border-gray-100 dark:border-slate-700">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-wide text-gray-600 dark:text-gray-300">Zrównoważony Rozwój</span>
+                    </div>
+                    
+                    <h1 class="font-display font-black text-5xl lg:text-7xl leading-tight">
+                        Blask Folii.<br>
+                        <span class="text-holo">Bez Plastiku.</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed">
+                        Poznaj <strong>Unilustre®</strong> – rewolucyjną technologię transferu metalicznego. 
+                        Wyjątkowy efekt wizualny, który jest w 100% przyjazny dla środowiska.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="inline-flex justify-center items-center px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg transition-all shadow-lg hover:shadow-brand-500/30">
+                            Zamów Próbki
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#unilustre" class="inline-flex justify-center items-center px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-gray-200 dark:border-slate-700 font-bold rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition-all">
+                            Poznaj Technologię
+                        </a>
+                    </div>
+
+                    <!-- Social Proof Mini -->
+                    <div class="pt-6 border-t border-gray-200 dark:border-slate-700">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider mb-3">Zaufali nam liderzy branży</p>
+                        <div class="flex gap-6 opacity-60 grayscale hover:grayscale-0 transition-all">
+                            <i class="fab fa-apple text-2xl"></i>
+                            <i class="fab fa-google text-2xl"></i>
+                            <i class="fas fa-cube text-2xl"></i>
+                            <i class="fas fa-shapes text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image / Visual -->
+                <div class="relative lg:h-[600px] flex items-center justify-center reveal">
+                    <!-- Abstract Holographic Flower/Leaf Composition -->
+                    <div class="relative w-full max-w-md aspect-square animate-float">
+                        <!-- Main Holographic Blob -->
+                        <div class="absolute inset-0 bg-holo-gradient organic-shape opacity-90 mix-blend-multiply dark:mix-blend-normal blur-sm"></div>
+                        
+                        <!-- Overlay Shimmer -->
+                        <div class="absolute inset-2 bg-gradient-to-tr from-white/40 to-transparent organic-shape mix-blend-overlay"></div>
+                        
+                        <!-- Secondary Shape (Leaf) -->
+                        <div class="absolute -bottom-10 -right-10 w-2/3 h-2/3 bg-gradient-to-br from-blue-400 to-purple-600 organic-shape opacity-80 rotate-45 shadow-2xl"></div>
+                        
+                        <!-- Floating particles -->
+                        <div class="absolute top-10 right-10 w-16 h-16 bg-yellow-300 rounded-full blur-xl opacity-60 animate-pulse"></div>
+                        <div class="absolute bottom-20 left-10 w-8 h-8 bg-pink-400 rounded-full blur-md opacity-80"></div>
+                        
+                        <!-- Card overlay showing technical spec -->
+                        <div class="absolute bottom-12 -left-8 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md p-4 rounded-xl shadow-xl border border-white/20">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i class="fas fa-recycle"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-semibold uppercase">Recykling</p>
+                                    <p class="font-bold dark:text-white">100% Repulpowalne</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Benefits (Icons) -->
+    <section class="py-16 bg-white dark:bg-slate-900 border-y border-gray-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group p-6 rounded-2xl bg-gray-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-750 transition-all hover:shadow-xl border border-transparent hover:border-gray-100 dark:hover:border-slate-700 reveal">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Eco-Friendly</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Unilustre® jest wolny od plastiku i rozpuszczalników. W pełni nadaje się do recyklingu wraz z papierem.
+                    </p>
+                </div>
+
+                <div class="group p-6 rounded-2xl bg-gray-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-750 transition-all hover:shadow-xl border border-transparent hover:border-gray-100 dark:hover:border-slate-700 reveal" style="transition-delay: 100ms">
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Wygląd Premium</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Spektakularny połysk i efekty holograficzne, które przyciągają wzrok na półce sklepowej.
+                    </p>
+                </div>
+
+                <div class="group p-6 rounded-2xl bg-gray-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-750 transition-all hover:shadow-xl border border-transparent hover:border-gray-100 dark:hover:border-slate-700 reveal" style="transition-delay: 200ms">
+                    <div class="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 text-orange-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Wszechstronność</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Kompatybilność z drukiem offsetowym, fleksograficznym oraz cyfrowym (HP Indigo).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Product: Unilustre -->
+    <section id="unilustre" class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-slate-50 dark:bg-slate-900/50 -z-20"></div>
+        <!-- Decorative geometric line -->
+        <div class="absolute top-0 left-1/2 w-px h-full bg-gray-200 dark:bg-slate-800 transform -translate-x-1/2"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-600 font-bold tracking-wider uppercase text-sm">Nasz Flagowy Produkt</span>
+                <h2 class="text-4xl lg:text-5xl font-display font-bold mt-2 mb-6">Unilustre®</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    Opatentowana technologia transferu metalizowanego bezpośrednio na papier. 
+                    Wygląda jak folia, zachowuje się jak papier.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl group reveal">
+                    <div class="absolute inset-0 bg-holo-gradient opacity-20 group-hover:opacity-10 transition-opacity z-10"></div>
+                    <!-- Simulate product image with CSS -->
+                    <div class="h-96 bg-gradient-to-br from-gray-200 to-gray-400 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center">
+                        <div class="w-64 h-80 bg-white dark:bg-slate-800 rounded shadow-lg transform rotate-[-5deg] group-hover:rotate-0 transition-all duration-500 relative overflow-hidden border border-gray-100 dark:border-slate-600">
+                            <!-- Holographic strip -->
+                            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-transparent via-white/40 to-transparent w-[200%] translate-x-[-100%] animate-shimmer"></div>
+                            <div class="p-6">
+                                <div class="w-16 h-16 rounded-full bg-holo-gradient mb-4"></div>
+                                <div class="h-4 w-3/4 bg-gray-200 dark:bg-slate-600 rounded mb-2"></div>
+                                <div class="h-4 w-1/2 bg-gray-200 dark:bg-slate-600 rounded"></div>
+                            </div>
+                            <div class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-black/10 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6 reveal">
+                    <h3 class="text-2xl font-bold">Dlaczego Unilustre?</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-brand-500 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="block text-slate-900 dark:text-white">Zero Folii (Zero-Film)</strong>
+                                <span class="text-gray-600 dark:text-gray-400 text-sm">Brak warstwy plastikowej, co eliminuje problem separacji w procesie recyklingu.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-brand-500 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="block text-slate-900 dark:text-white">Holograficzna Głębia</strong>
+                                <span class="text-gray-600 dark:text-gray-400 text-sm">Dostępne w wariantach srebrnym, złotym oraz z personalizowanymi wzorami holograficznymi.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-brand-500 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="block text-slate-900 dark:text-white">Certyfikacja HP Indigo</strong>
+                                <span class="text-gray-600 dark:text-gray-400 text-sm">Unilustre® DI jest zatwierdzony do druku cyfrowego.</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block mt-4 text-brand-600 font-bold hover:text-brand-700 hover:underline">
+                        Pobierz specyfikację techniczną <i class="fas fa-download ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secondary Products: PET & Lamination -->
+    <section id="products" class="py-20 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-display font-bold">Pozostała Oferta</h2>
+                    <p class="text-slate-400 mt-2">Kompleksowe rozwiązania dla przemysłu opakowaniowego.</p>
+                </div>
+                <a href="#contact" class="hidden md:inline-block px-6 py-2 border border-slate-600 rounded-lg hover:bg-slate-800 transition-colors">
+                    Pełny katalog
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product Card 1 -->
+                <div class="bg-slate-800 rounded-xl p-6 hover:bg-slate-750 transition border border-slate-700 hover:border-brand-500 group reveal">
+                    <div class="h-40 bg-slate-700 rounded-lg mb-6 overflow-hidden relative">
+                        <!-- PET Texture CSS -->
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMzMzIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiM0NDQiLz4KPC9zdmc+')] opacity-20"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-4xl text-slate-500 group-hover:text-white transition-colors"><i class="fas fa-layer-group"></i></span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Laminacja PET</h3>
+                    <p class="text-sm text-slate-400 mb-4">
+                        Wysokiej jakości folie poliestrowe zapewniające trwałość i odporność na wilgoć. Idealne do opakowań przemysłowych.
+                    </p>
+                    <span class="text-xs font-mono text-brand-400 uppercase border border-brand-400/30 px-2 py-1 rounded">High Durability</span>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="bg-slate-800 rounded-xl p-6 hover:bg-slate-750 transition border border-slate-700 hover:border-brand-500 group reveal" style="transition-delay: 100ms">
+                    <div class="h-40 bg-slate-700 rounded-lg mb-6 overflow-hidden relative">
+                         <div class="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20"></div>
+                         <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-4xl text-slate-500 group-hover:text-white transition-colors"><i class="fas fa-magic"></i></span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Holo Unilustre®</h3>
+                    <p class="text-sm text-slate-400 mb-4">
+                        Holograficzne wzory dyfrakcyjne bez użycia folii. Zabezpieczenia marki i niesamowity efekt "wow".
+                    </p>
+                    <span class="text-xs font-mono text-brand-400 uppercase border border-brand-400/30 px-2 py-1 rounded">Security & Visuals</span>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="bg-slate-800 rounded-xl p-6 hover:bg-slate-750 transition border border-slate-700 hover:border-brand-500 group reveal" style="transition-delay: 200ms">
+                    <div class="h-40 bg-slate-700 rounded-lg mb-6 overflow-hidden relative">
+                         <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-4xl text-slate-500 group-hover:text-white transition-colors"><i class="fas fa-industry"></i></span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Usługi Metalizacji</h3>
+                    <p class="text-sm text-slate-400 mb-4">
+                        Kompleksowe usługi powlekania i metalizacji dla podłoży dostarczonych przez klienta.
+                    </p>
+                    <span class="text-xs font-mono text-brand-400 uppercase border border-brand-400/30 px-2 py-1 rounded">Custom Solutions</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & Contact Section -->
+    <section id="contact" class="py-24 bg-brand-900 relative overflow-hidden">
+        <!-- Abstract Circles -->
+        <div class="absolute -top-20 -right-20 w-96 h-96 bg-brand-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+        <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-display font-black text-white mb-6">
+                Stwórz opakowanie,<br>które zachwyca.
+            </h2>
+            <p class="text-brand-100 text-lg mb-10">
+                Skontaktuj się z naszym zespołem, aby otrzymać darmowy wzornik Unilustre® lub wycenę projektu.
+            </p>
+
+            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-8 md:p-10 text-left">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Imię i Nazwisko</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition" placeholder="Jan Kowalski">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Firmowy</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition" placeholder="jan@firma.pl">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Wiadomość / Zapytanie</label>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition" placeholder="Opisz swoje potrzeby..."></textarea>
+                    </div>
+                    <button type="button" class="w-full py-4 bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-700 hover:to-blue-700 text-white font-bold rounded-lg shadow-lg transform active:scale-95 transition-all">
+                        Wyślij Wiadomość
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 rounded bg-brand-600"></div>
+                        <span class="font-bold text-xl dark:text-white">UNIFOIL</span>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Lider innowacji w dziedzinie uszlachetniania druku i rozwiązań pro-ekologicznych.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 dark:text-white">Produkty</h4>
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-brand-500">Unilustre®</a></li>
+                        <li><a href="#" class="hover:text-brand-500">Holo Unilustre®</a></li>
+                        <li><a href="#" class="hover:text-brand-500">Unilustre® Digital</a></li>
+                        <li><a href="#" class="hover:text-brand-500">Laminacja PET</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 dark:text-white">Firma</h4>
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-brand-500">O nas</a></li>
+                        <li><a href="#" class="hover:text-brand-500">Zrównoważony Rozwój</a></li>
+                        <li><a href="#" class="hover:text-brand-500">Kariera</a></li>
+                        <li><a href="#" class="hover:text-brand-500">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 dark:text-white">Kontakt</h4>
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                        <li><i class="fas fa-map-marker-alt w-5"></i> Gdańsk, Polska</li>
+                        <li><i class="fas fa-phone w-5"></i> +48 58 683 60 30</li>
+                        <li><i class="fas fa-envelope w-5"></i> sales@unifoil.com</li>
+                    </ul>
+                    <div class="flex gap-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-brand-500"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-brand-500"><i class="fab fa-facebook text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-xs text-gray-400">&copy; 2026 Unifoil Corporation. All rights reserved.</p>
+                <div class="flex gap-4 mt-4 md:mt-0 text-xs text-gray-400">
+                    <a href="#" class="hover:text-gray-600 dark:hover:text-gray-300">Prywatność</a>
+                    <a href="#" class="hover:text-gray-600 dark:hover:text-gray-300">Regulamin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+            
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+    </script>
+</body>
+</html>
+```[[9](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQH1OCF1KtmxAptlyZAc7v8KGLP1vKsyoh9e83jDxhtnk-xCPWnAXE4gY-A_HuihrzZncIR075DJvrO-N3d0YARLasqqQGb9sTufX-1B_t2GlQz_2Zx18iNyzypYxDV9MfMDJLXzDiMewdhpHNy2N6SkzeAmHLzLf06dzWyb95nNON33AeE%3D)][[10](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQFuJ8sswj-xk3rbtZg8UJGr8E_TZN4cZeKMu2AwMt9-ZkwLrW5cbpkNVciMLOZIcavY7cZtZazlfIBXGi4UkjwcOOGmCrr5J4DUkhUaK-5WIUR35yq9NYxHNXunfj_AK9XWQ4gEjiZmuS579o1mqhLf2pK8yhB6bdE%3D)][[11](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQFOHEf6c4vI0Jhc11W7RSCJpkmmMEq2_bzRaHls7FcxV-P5EjkUT4BJu1bDxwBs11qDj75f2gGR--X74lYDv0c4UBv0nmtc12LzZcAn2FA_rkU_2m0zMtQhgg%3D%3D)]

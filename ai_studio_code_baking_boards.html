@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifoil - Rewolucja w Blasku</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --color-bg-dark: #0A192F;
+            --color-bg-light: #F8F9FA;
+            --color-text-white: #FFFFFF;
+            --color-text-dark: #1E293B;
+            --color-text-gray: #94A3B8;
+            --color-accent-cyan: #00F0FF;
+            --color-accent-purple: #BD00FF;
+            --color-border: #E2E8F0;
+            
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --spacing-section: 120px;
+            --spacing-container: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; transition: 0.3s ease; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-container);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-purple));
+            color: var(--color-bg-dark);
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(189, 0, 255, 0.4);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--color-text-white);
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--color-accent-cyan); }
+
+        nav ul {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        nav a:hover { color: var(--color-accent-cyan); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background-color: var(--color-bg-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px; /* Space for nav */
+        }
+
+        /* Abstract mesh background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(189,0,255,0.15) 0%, rgba(10,25,47,0) 70%);
+            z-index: 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--color-text-white);
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            color: var(--color-text-gray);
+            font-size: 1.125rem;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 20px;
+            /* Simulating the holographic look via CSS filters on a placeholder */
+            filter: contrast(1.1) saturate(1.2);
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+
+        /* Floating elements for effect */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+        }
+        .orb-1 { width: 300px; height: 300px; background: var(--color-accent-cyan); opacity: 0.2; top: 10%; right: 10%; }
+        .orb-2 { width: 200px; height: 200px; background: var(--color-accent-purple); opacity: 0.2; bottom: 10%; left: 10%; }
+
+        /* --- UNILUSTRE FEATURES --- */
+        .features {
+            padding: 80px 0;
+            background: var(--color-bg-dark);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 32px;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: var(--color-accent-cyan);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: var(--color-accent-cyan);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-text-white);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: var(--color-text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* --- POLISH PRODUCTION (Secondary) --- */
+        .production {
+            padding: var(--spacing-section) 0;
+            background-color: var(--color-bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px auto;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-bg-dark);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: #64748B;
+            font-size: 1.1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .product-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .product-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #E0F2FE;
+            color: #0284C7;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .tag-eco { background: #DCFCE7; color: #166534; }
+        .tag-tech { background: #F3E8FF; color: #7E22CE; }
+
+        .product-item h3 {
+            font-family: var(--font-heading);
+            color: var(--color-bg-dark);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .product-item p {
+            font-size: 0.9rem;
+            color: #64748B;
+            line-height: 1.5;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact {
+            background: var(--color-bg-dark);
+            padding: var(--spacing-section) 0;
+            color: white;
+            position: relative;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .contact-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-accent-cyan);
+            background: rgba(255,255,255,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--color-text-gray);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #020617;
+            padding: 40px 0;
+            text-align: center;
+            color: #475569;
+            font-size: 0.875rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { margin: 0 auto 30px auto; }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-content { flex-direction: column; gap: 16px; }
+            nav ul { gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo">UNI<span>FOIL</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#unilustre">Unilustre®</a></li>
+                    <li><a href="#production">Produkcja PL</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span style="color: var(--color-accent-cyan); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: block; margin-bottom: 16px;">Innowacja w laminacji</span>
+                <h1>Rewolucja w Blasku.<br><span class="gradient-text">Bez Plastiku.</span></h1>
+                <p>Poznaj Unilustre® – metalizowany karton, który łączy luksusowy efekt holograficzny z pełną ekologią. 100% recyklingu. 0% laminatu.</p>
+                <a href="#production" class="btn btn-primary">Zobacz Ofertę</a>
+            </div>
+            <div class="hero-visual">
+                <!-- Placeholder for high-quality butterfly/leaf image -->
+                <!-- Ideally a transparent PNG of a holographic butterfly on a leaf -->
+                <img src="https://images.unsplash.com/photo-1550059944-7c27e3666e92?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Holographic Nature Abstract">
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Product Features (Unilustre) -->
+    <section id="unilustre" class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3>100% Ekologiczny</h3>
+                    <p>Monocząsteczkowa warstwa metalu. Papier w pełni nadaje się do recyklingu i ponownego przetworzenia. Zero folii.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Efekt Premium</h3>
+                    <p>Niezrównany połysk Unilustre® i efekty holograficzne. Luksusowy wygląd, który wyróżnia produkt na półce.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Bezpieczna Produkcja</h3>
+                    <p>Eliminacja szkodliwych rozpuszczalników. Proces bezpieczny dla żywności i przyjazny dla środowiska.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Polish Production Section (Secondary) -->
+    <section id="production" class="production">
+        <div class="container">
+            <div class="section-header">
+                <h2>Specjalistyczna Produkcja w Polsce</h2>
+                <p>Nasz polski zakład oferuje zaawansowane rozwiązania techniczne dla branży spożywczej i opakowaniowej.</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-item">
+                    <div style="height: 180px; background: #e2e8f0; display:flex; align-items:center; justify-content:center;">
+                        <!-- Placeholder graphic -->
+                        <span style="font-size: 3rem;">🍪</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-tag">Food Grade</span>
+                        <h3>Baking Board</h3>
+                        <p>Tektura przeznaczona typowo do piekarnika. Idealna do wyrobów cukierniczych i produktów spożywczych. W pełni odporna na wodę i tłuszcze.</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-item">
+                    <div style="height: 180px; background: #e2e8f0; display:flex; align-items:center; justify-content:center;">
+                        <span style="font-size: 3rem;">⚡</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-tag tag-tech">Microwave Safe</span>
+                        <h3>Susceptor</h3>
+                        <p>Specjalistyczny materiał na tacki i opakowania do podgrzewania jedzenia w mikrofali. Zapewnia równomierne rozprowadzanie ciepła.</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-item">
+                    <div style="height: 180px; background: #e2e8f0; display:flex; align-items:center; justify-content:center;">
+                        <span style="font-size: 3rem;">🌿</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-tag tag-eco">Compost Home</span>
+                        <h3>Barrier Board</h3>
+                        <p>Produkt ekologiczny. Wysoka bariera odporna na tłuszcz i oleje. Wytrzymuje zarówno wysokie jak i niskie temperatury.</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-item">
+                    <div style="height: 180px; background: #e2e8f0; display:flex; align-items:center; justify-content:center;">
+                        <span style="font-size: 3rem;">💎</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-tag">Premium Packaging</span>
+                        <h3>Laminacja PET</h3>
+                        <p>Laminacje Silver & Gold na zwykłym PET. Doskonałe podłoże pod druk luksusowych opakowań różnego rodzaju.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Ticker -->
+    <div style="background: white; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 30px 0; overflow: hidden;">
+        <div class="container" style="text-align: center; color: #94A3B8; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+            Zaufali nam liderzy branży spożywczej i kosmetycznej
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container contact-container">
+            <div class="contact-text">
+                <h2>Stwórzmy razem opakowanie, które <span class="gradient-text">zachwyca.</span></h2>
+                <p style="color: var(--color-text-gray); font-size: 1.1rem; margin-bottom: 32px;">
+                    Skontaktuj się z nami, aby otrzymać darmowe próbki Unilustre® lub omówić specyfikację techniczną produktów z naszej polskiej fabryki.
+                </p>
+                <div style="margin-top: 40px;">
+                    <p style="margin-bottom: 10px;"><strong>Email:</strong> poland@unifoil.com</p>
+                    <p><strong>Tel:</strong> +48 123 456 789</p>
+                </div>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label>Imię i Nazwisko</label>
+                    <input type="text" class="form-control" placeholder="Jan Kowalski">
+                </div>
+                <div class="form-group">
+                    <label>Adres E-mail</label>
+                    <input type="email" class="form-control" placeholder="jan@firma.pl">
+                </div>
+                <div class="form-group">
+                    <label>Temat</label>
+                    <select class="form-control">
+                        <option>Zapytanie o Unilustre</option>
+                        <option>Produkcja w Polsce (Baking/Barrier)</option>
+                        <option>Inne</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Wiadomość</label>
+                    <textarea class="form-control" rows="4" placeholder="Opisz swoje potrzeby..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Wyślij Wiadomość</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Unifoil Corporation. Wszelkie prawa zastrzeżone. | Projekt High-Fidelity</p>
+        </div>
+    </footer>
+
+</body>
+</html>
